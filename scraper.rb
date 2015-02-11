@@ -8,7 +8,7 @@ require 'open-uri'
 class Scraper
 
   def initialize
-    url = "urlgoeshere"
+    url = "http://blog.shopittome.com"
     @data = Nokogiri::HTML(open(url))
   end
 
@@ -16,7 +16,6 @@ class Scraper
   def scrape_tag_text tag
     index = 0
     html_tags = @data.css(tag)[index]
-
     if @data.css(tag).count > 0 && html_tags != nil
       html_tags.each do |i|
         puts html_tags.text
@@ -28,9 +27,7 @@ class Scraper
 
   # scrapes specified tag and returns image links if any
   def scrape_tag_image tag
-      index = 0
-      pics = @data.css(tag)[index]
-
+      pics = @data.css(tag)
       if @data.css('img/@src').count > 0 && pics != nil
         pics.each do |i|
           puts pics.css('img/@src')
@@ -41,5 +38,5 @@ class Scraper
   end
 end
 
-Scraper.new.scrape_tag_image('div')
-Scraper.new.scrape_tag_text('h2')
+Scraper.new.scrape_tag_image('html')
+Scraper.new.scrape_tag_text('html')
