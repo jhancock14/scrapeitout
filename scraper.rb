@@ -36,7 +36,20 @@ class Scraper
         puts 'no ' + tag + ' tags with images found'
       end
   end
+
+  # scrapes a specified tag and returns any links
+  def scrape_tag_link tag
+      links = @data.css(tag)
+      if @data.css('a/@href').count > 0 && links != nil
+        links.each do |i|
+          puts links.css('a/@href')
+        end
+      else
+        puts 'no ' + tag + ' tags with links found'
+      end
+  end
 end
 
-Scraper.new.scrape_tag_image('html')
 Scraper.new.scrape_tag_text('html')
+Scraper.new.scrape_tag_image('html')
+Scraper.new.scrape_tag_link('html')
