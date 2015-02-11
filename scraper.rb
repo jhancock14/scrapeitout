@@ -8,7 +8,7 @@ require 'open-uri'
 class Scraper
 
   def initialize
-    url = "http://blog.shopittome.com"
+    url = "http://urlgoeshere"
     @data = Nokogiri::HTML(open(url))
   end
 
